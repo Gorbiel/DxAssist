@@ -1,0 +1,75 @@
+name: System Integration
+description: Connect or verify communication between internal system components
+title: "[Integration]: "
+labels: ["integration"]
+body:
+  - type: dropdown
+    id: integration_type
+    attributes:
+      label: Integration type
+      options:
+        - Frontend ↔ Backend
+        - Backend ↔ Scheduler
+        - Scheduler ↔ ML module
+        - Backend ↔ Database
+        - Platform ↔ New module
+        - GitOps ↔ K3s
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: components
+    attributes:
+      label: Components involved
+      placeholder: e.g. Django backend, Scheduler, blood test ML module
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What should be integrated?
+      placeholder: Describe the integration task...
+    validations:
+      required: true
+
+  - type: textarea
+    id: data_flow
+    attributes:
+      label: Data flow
+      description: What data is sent, in what format, and in which direction?
+      placeholder: |
+        1. Backend sends ...
+        2. Scheduler routes ...
+        3. ML module returns ...
+
+  - type: textarea
+    id: contract
+    attributes:
+      label: Interface / contract
+      description: Endpoint, schema, file format, message format, or module specification.
+
+  - type: textarea
+    id: error_handling
+    attributes:
+      label: Error handling
+      description: Expected behavior when one component is unavailable or returns invalid data.
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] Components communicate successfully
+        - [ ] Valid request returns expected response
+        - [ ] Error case is handled
+        - [ ] Integration documented
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies / blockers
+      description: Related API, infra, frontend, or ML module issues.

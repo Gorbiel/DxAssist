@@ -1,0 +1,77 @@
+name: Documentation
+description: Documentation work for project milestones, architecture, API, modules, or setup
+title: "[Docs]: "
+labels: ["documentation"]
+body:
+  - type: dropdown
+    id: doc_type
+    attributes:
+      label: Documentation type
+      options:
+        - Milestone report
+        - Architecture
+        - API documentation
+        - Module specification
+        - ML module documentation
+        - Deployment / setup guide
+        - User guide
+        - Diagrams
+        - Bibliography / sources
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What should be documented or updated?
+      placeholder: Describe the documentation task...
+    validations:
+      required: true
+
+  - type: textarea
+    id: target_audience
+    attributes:
+      label: Target audience
+      description: Who is this documentation for?
+      placeholder: e.g. project team, promoter, doctor, administrator, module developer
+
+  - type: textarea
+    id: related_sections
+    attributes:
+      label: Related sections / files
+      description: Document sections, files, diagrams, or repository paths affected by this task.
+
+  - type: textarea
+    id: required_content
+    attributes:
+      label: Required content
+      description: What information must be included?
+      placeholder: |
+        - ...
+        - ...
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources / references
+      description: Links, papers, docs, or internal notes that should be cited or used.
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] Content added or updated
+        - [ ] Language reviewed
+        - [ ] References checked
+        - [ ] Diagrams/screenshots included if needed
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies / blockers
+      description: Related issues, implementation tasks, or decisions.

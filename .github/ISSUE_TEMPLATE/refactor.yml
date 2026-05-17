@@ -1,0 +1,22 @@
+name: Refactor
+description: Code cleanup or internal improvement
+title: "[Refactor]: "
+labels: ["refactor"]
+body:
+  - type: textarea
+    id: area
+    attributes:
+      label: What needs refactoring?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why is this needed?
+      description: Technical debt, performance, readability, etc.
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes

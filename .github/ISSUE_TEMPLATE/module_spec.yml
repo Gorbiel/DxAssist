@@ -1,0 +1,85 @@
+name: Module Specification
+description: Work related to the standard interface and rules for adding new diagnostic modules
+title: "[Module Spec]: "
+labels: ["module-spec", "architecture"]
+body:
+  - type: dropdown
+    id: spec_area
+    attributes:
+      label: Specification area
+      options:
+        - Module metadata
+        - Input format
+        - Output format
+        - API contract
+        - Error handling
+        - Resource requirements
+        - Deployment manifest
+        - Scheduler routing
+        - Security / permissions
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / decision to define
+      description: What part of the module integration standard needs to be specified?
+      placeholder: Describe what needs to be standardized...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: Proposed solution
+      description: Describe the proposed rule, format, contract, or convention.
+      placeholder: e.g. required metadata fields, endpoint format, JSON schema...
+    validations:
+      required: true
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Example
+      description: Optional example of request, response, YAML manifest, metadata, or module behavior.
+      placeholder: |
+        ```json
+        {
+          "module_name": "...",
+          "input_type": "..."
+        }
+        ```
+
+  - type: textarea
+    id: affected_components
+    attributes:
+      label: Affected components
+      description: Which parts of the system depend on this specification?
+      placeholder: e.g. Scheduler, ML modules, backend, GitOps manifests
+
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility considerations
+      description: Does this affect existing modules or require migration?
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] Specification updated
+        - [ ] Example provided
+        - [ ] At least one reference module follows the specification
+        - [ ] Related implementation tasks created if needed
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies / blockers
+      description: Related architecture, ML module, backend, scheduler, or infra tasks.

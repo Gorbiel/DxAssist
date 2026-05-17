@@ -1,0 +1,20 @@
+name: Task
+description: Internal task or improvement
+title: "[Task]: "
+labels: ["task"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Subtasks
+      options:
+        - label: Implementation
+        - label: Testing
+        - label: Documentation

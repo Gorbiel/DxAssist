@@ -1,0 +1,100 @@
+name: ML Module
+description: Work related to a diagnostic ML module, model training, datasets, metrics, or deployment
+title: "[ML Module]: "
+labels: ["ml", "module"]
+body:
+  - type: input
+    id: module_name
+    attributes:
+      label: Module name
+      placeholder: e.g. Blood screening module, Coronary angiogram module
+    validations:
+      required: true
+
+  - type: dropdown
+    id: module_stage
+    attributes:
+      label: Stage
+      options:
+        - Dataset preparation
+        - Model training
+        - Model evaluation
+        - API wrapper
+        - Containerization
+        - Integration with Scheduler
+        - Deployment
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose
+      description: What diagnostic problem or data type does this module address?
+      placeholder: Describe the module purpose...
+    validations:
+      required: true
+
+  - type: textarea
+    id: input_data
+    attributes:
+      label: Input data
+      description: Expected input format, data type, required fields, files, or preprocessing assumptions.
+      placeholder: e.g. blood test parameters in JSON, angiogram image file...
+    validations:
+      required: true
+
+  - type: textarea
+    id: output_data
+    attributes:
+      label: Output data
+      description: Expected output format returned by the module.
+      placeholder: e.g. risk score, class label, confidence, explanation...
+    validations:
+      required: true
+
+  - type: textarea
+    id: dataset
+    attributes:
+      label: Dataset / data source
+      description: Dataset name, source, preprocessing steps, train/validation/test split.
+
+  - type: textarea
+    id: metrics
+    attributes:
+      label: Metrics
+      description: Metrics used to evaluate the model.
+      placeholder: e.g. accuracy, precision, recall, F1-score, AUC, sensitivity, specificity
+
+  - type: textarea
+    id: implementation_notes
+    attributes:
+      label: Implementation notes
+      description: Model architecture, libraries, preprocessing, API wrapper, container details.
+
+  - type: textarea
+    id: integration_notes
+    attributes:
+      label: Integration notes
+      description: Scheduler contract, endpoint, request/response schema, resource requirements.
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] Model trained or selected
+        - [ ] Evaluation metrics documented
+        - [ ] Module exposes API compatible with Scheduler
+        - [ ] Module container builds successfully
+        - [ ] Basic integration test passes
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies / blockers
+      description: Related dataset, API, infra, or module specification tasks.

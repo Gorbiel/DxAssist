@@ -1,0 +1,70 @@
+name: Frontend
+description: UI, UX, pages, forms, or frontend integration work
+title: "[Frontend]: "
+labels: ["frontend"]
+body:
+  - type: dropdown
+    id: user_role
+    attributes:
+      label: Target user role
+      options:
+        - Doctor
+        - Administrator
+        - Module developer
+        - General / shared
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What needs to be changed, added, or fixed?
+      placeholder: Describe the frontend task...
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected_pages
+    attributes:
+      label: Affected pages/components
+      placeholder: e.g. login page, diagnostic request form, admin module panel
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      placeholder: What should the user see or be able to do?
+    validations:
+      required: true
+
+  - type: textarea
+    id: api_dependencies
+    attributes:
+      label: API dependencies
+      description: Required backend endpoints or data contracts.
+      placeholder: e.g. POST /api/diagnostic-requests
+
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation / edge cases
+      description: Required form validation, empty states, loading states, error states.
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots / mockups / references
+      description: Add screenshots, sketches, recordings, or design references if applicable.
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] UI implemented
+        - [ ] Loading and error states handled
+        - [ ] Connected to API
+        - [ ] Basic responsive behavior checked
+    validations:
+      required: true

@@ -1,0 +1,76 @@
+name: Backend / API Change
+description: Add or modify backend endpoints, request/response schemas, or service communication
+title: "[API]: "
+labels: ["backend", "api"]
+body:
+  - type: dropdown
+    id: api_area
+    attributes:
+      label: API area
+      options:
+        - Authentication / authorization
+        - User management
+        - Patient data upload
+        - Diagnostic request
+        - Results / reports
+        - Backend ↔ Scheduler communication
+        - Backend ↔ Database
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: endpoint
+    attributes:
+      label: Endpoint or interface
+      description: HTTP endpoint, internal service call, or planned interface.
+      placeholder: e.g. POST /api/diagnostic-requests
+    validations:
+      required: true
+
+  - type: textarea
+    id: request
+    attributes:
+      label: Request format
+      description: Input data, parameters, file format, headers, permissions.
+      placeholder: JSON body, multipart upload, query params...
+
+  - type: textarea
+    id: response
+    attributes:
+      label: Response format
+      description: Expected response, status codes, error format.
+      placeholder: JSON response, validation errors...
+
+  - type: textarea
+    id: permissions
+    attributes:
+      label: Permissions / access control
+      description: Which roles should be allowed to use this API?
+      placeholder: e.g. doctor, admin, internal service only
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Why is this API change needed?
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] Endpoint implemented
+        - [ ] Request validation added
+        - [ ] Tests added
+        - [ ] Documentation updated
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies / blockers
+      description: Related frontend, scheduler, database, or infra tasks.

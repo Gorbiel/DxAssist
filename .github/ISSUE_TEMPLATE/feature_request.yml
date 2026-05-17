@@ -1,0 +1,68 @@
+name: Feature / Requirement
+description: Add or change a system feature or project requirement
+title: "[Feature]: "
+labels: ["feature"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What should be added or changed?
+      placeholder: Describe the feature or requirement...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Platform
+        - Backend
+        - Frontend
+        - Infrastructure
+        - ML module
+        - Module specification
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What is included in this feature?
+      placeholder: List the main parts of the work...
+    validations:
+      required: true
+
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of scope
+      description: What should not be done as part of this issue?
+      placeholder: Optional, but useful for avoiding scope creep.
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      description: What must be true for this issue to be considered done?
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies / blockers
+      description: Related issues, modules, API changes, or decisions.
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+      description: Context, references, diagrams, or implementation notes.

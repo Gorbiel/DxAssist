@@ -1,0 +1,84 @@
+name: Infrastructure
+description: K3s, Kubernetes manifests, GitOps, deployment, database, or environment work
+title: "[Infra]: "
+labels: ["infra"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - K3s / Kubernetes
+        - GitOps / Argo CD
+        - Ingress
+        - Backend deployment
+        - Frontend deployment
+        - Scheduler deployment
+        - ML module deployment
+        - PostgreSQL / persistence
+        - Backups
+        - Secrets / environment variables
+        - CI/CD
+        - Monitoring / logs
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What infrastructure change or issue is this about?
+      placeholder: Describe the infra task...
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_state
+    attributes:
+      label: Current state
+      placeholder: What currently exists or happens?
+
+  - type: textarea
+    id: desired_state
+    attributes:
+      label: Desired state
+      placeholder: What should be created, changed, or fixed?
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected_components
+    attributes:
+      label: Affected components
+      placeholder: e.g. frontend deployment, backend service, scheduler, PostgreSQL, ML pod
+
+  - type: textarea
+    id: config_changes
+    attributes:
+      label: Configuration changes
+      description: Kubernetes YAML, environment variables, secrets, ports, volumes, resource limits.
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / errors
+      description: Paste relevant logs, deployment errors, or command output if applicable.
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] Manifests updated
+        - [ ] Deployment works locally / in K3s
+        - [ ] Services are reachable
+        - [ ] Documentation updated
+    validations:
+      required: true
+
+  - type: textarea
+    id: rollback
+    attributes:
+      label: Rollback / recovery notes
+      description: How can this change be reverted or recovered from if needed?
