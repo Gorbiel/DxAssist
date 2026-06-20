@@ -3,7 +3,7 @@
   <component name="FacetManager">
     <facet type="django" name="Django">
       <configuration>
-        <option name="rootFolder" value="$MODULE_DIR$/backend" />
+        <option name="rootFolder" value="$MODULE_DIR$/dxassist-backend" />
         <option name="settingsModule" value="config/settings/dev.py" />
         <option name="manageScript" value="manage.py" />
         <option name="environment" value="&lt;map/&gt;" />
@@ -13,11 +13,11 @@
     </facet>
   </component>
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$/backend">
-      <excludeFolder url="file://$MODULE_DIR$/backend/.venv" />
-      <excludeFolder url="file://$MODULE_DIR$/backend/media" />
+    <content url="file://$MODULE_DIR$/dxassist-backend">
+      <excludeFolder url="file://$MODULE_DIR$/dxassist-backend/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/dxassist-backend/media" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.14 (inrzynierka)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.14 (inrzynierka-backend)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

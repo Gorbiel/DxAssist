@@ -34,8 +34,8 @@ The current backend scaffold contains:
 - PostgreSQL-oriented settings.
 - JWT authentication.
 - Admin-created custom user accounts for doctors and administrators.
-- A service-style apps layout under `backend/apps`.
-- Docker and entrypoint scaffolding for containerized deployment.
+- A service-style apps layout under `dxassist-backend/apps`.
+- Docker, Docker Compose, and entrypoint scaffolding for containerized deployment.
 
 ## Safety And Governance Notes
 

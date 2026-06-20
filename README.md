@@ -34,11 +34,11 @@ The system follows a modular architecture inspired by the *Mixture of Experts* a
 ## Repository Structure
 
 ```text
-/frontend        Frontend application
-/backend         Backend API and business logic
-/k8s           Infrastructure and deployment configuration
-/ml-modules      Machine learning diagnostic modules
-/docs            Project documentation
+/dxassist-frontend  Frontend application
+/dxassist-backend   Backend API and business logic
+/k8s                Infrastructure and deployment configuration
+/ml-modules         Machine learning diagnostic modules
+/docs               Project documentation
 ```
 
 ---
@@ -53,7 +53,7 @@ The project uses:
 - CI/CD automation
 - GitOps-based infrastructure management
 
-See `CONTRIBUTING.md` for development conventions and repository workflow.
+See `CONTRIBUTING.md` for development conventions and repository workflow. Docker Compose commands are documented in `docs/compose.md`.
 
 ---
 
