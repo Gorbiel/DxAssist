@@ -1,5 +1,15 @@
 # DxAssist
 
+[![CI](https://github.com/Gorbiel/DxAssist/actions/workflows/ci.yml/badge.svg)](https://github.com/Gorbiel/DxAssist/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/Gorbiel/DxAssist/actions/workflows/codeql.yml/badge.svg)](https://github.com/Gorbiel/DxAssist/actions/workflows/codeql.yml)
+[![Dependency Review](https://github.com/Gorbiel/DxAssist/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/Gorbiel/DxAssist/actions/workflows/dependency-review.yml)
+![Python](https://img.shields.io/badge/python-3.14-blue)
+![Django](https://img.shields.io/badge/django-6.0-0C4B33)
+![Next.js](https://img.shields.io/badge/next.js-16-black)
+![Docker Compose](https://img.shields.io/badge/docker-compose-2496ED)
+![License](https://img.shields.io/badge/license-GPL--3.0--or--later-blue)
+![Status](https://img.shields.io/badge/status-prototype-orange)
+
 DxAssist is an on-premise clinical decision-support platform for integrating specialized AI diagnostic modules into one system. It is designed for hospital infrastructure and for use by doctors and authorized medical staff.
 
 The system is intended to support, not replace, clinical judgment. It analyzes submitted diagnostic data through registered machine-learning modules and presents structured diagnostic suggestions, confidence information, and supporting details to the doctor.
