@@ -20,7 +20,7 @@ class Command(BaseCommand):
             self.stdout.write(self.style.WARNING("User already exists"))
             return
 
-        user = User.objects.create_superuser(
+        User.objects.create_superuser(
             email=email,
             name=name,
             password=password,

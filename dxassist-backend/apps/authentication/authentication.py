@@ -16,8 +16,8 @@ class CustomJWTAuthentication(JWTAuthentication):
 
         try:
             user = User.objects.get(id=user_id)
-        except User.DoesNotExist:
-            raise AuthenticationFailed("User not found")
+        except User.DoesNotExist as exc:
+            raise AuthenticationFailed("User not found") from exc
 
         if not user.is_active:
             raise AuthenticationFailed("User is inactive")
