@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Backend service for DxAssist, an on-premise clinical decision-support assistant for doctors."
 readme = { text = "DxAssist backend service for hospital on-premise deployments.", content-type = "text/markdown" }
 requires-python = ">=3.14"
-license = "GPLv3"
+license = "GPL-3.0-or-later"
 authors = [
     { name = "DxAssist Team", email = "dxassist-team@dxassist.local" },
 ]
