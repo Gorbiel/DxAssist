@@ -153,6 +153,7 @@ fabric.properties
 
 # Portable Document Format
 *.pdf
+!docs/**/*.pdf
 
 # X BitMap
 *.xbm
@@ -201,6 +202,7 @@ $RECYCLE.BIN/
 *.jar
 *.rar
 *.zip
+!docs/**/*.zip
 *.gz
 *.gzip
 *.tgz
