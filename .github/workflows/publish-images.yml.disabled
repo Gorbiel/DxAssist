@@ -13,7 +13,7 @@ permissions:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAMESPACE: gorbiel/DxAssist
+  IMAGE_NAMESPACE: gorbiel/dxassist
 
 jobs:
   publish:
@@ -24,12 +24,12 @@ jobs:
       matrix:
         include:
           - name: backend
-            context: ./backend
-            dockerfile: ./backend/Dockerfile
+            context: ./dxassist-backend
+            dockerfile: ./dxassist-backend/Dockerfile
             build_args: ""
           - name: frontend
-            context: ./frontend
-            dockerfile: ./frontend/Dockerfile
+            context: ./dxassist-frontend
+            dockerfile: ./dxassist-frontend/Dockerfile
             build_args: ""
 
     steps:
@@ -41,10 +41,10 @@ jobs:
         run: |
           if [[ "${GITHUB_REF_NAME}" == "production" ]]; then
             echo "env_tag=production" >> "$GITHUB_OUTPUT"
-            echo "backend_url=https://api.glazedin.click" >> "$GITHUB_OUTPUT"
+            echo "backend_url=https://api.dxassist.local" >> "$GITHUB_OUTPUT"
           elif [[ "${GITHUB_REF_NAME}" == "master" ]]; then
             echo "env_tag=staging" >> "$GITHUB_OUTPUT"
-            echo "backend_url=https://api.staging.glazedin.click" >> "$GITHUB_OUTPUT"
+            echo "backend_url=https://api.staging.dxassist.local" >> "$GITHUB_OUTPUT"
           else
             echo "Unsupported branch: ${GITHUB_REF_NAME}"
             exit 1

@@ -120,8 +120,8 @@ Large changes should be split into smaller reviewable Pull Requests whenever pos
 The repository is organized into multiple logical areas:
 
 ```text
-/frontend        Frontend application
-/backend         Backend API and business logic
+/dxassist-frontend  Frontend application
+/dxassist-backend   Backend API and business logic
 /infra           Infrastructure, Kubernetes manifests, GitOps
 /ml-modules      Diagnostic ML modules
 /docs            Documentation and milestone reports

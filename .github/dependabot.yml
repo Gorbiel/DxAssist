@@ -3,7 +3,7 @@ version: 2
 updates:
   # Backend (Python / Django)
   - package-ecosystem: "pip"
-    directory: "/backend"
+    directory: "/dxassist-backend"
     schedule:
       interval: "weekly"
     target-branch: "master"
@@ -25,7 +25,7 @@ updates:
 
   # Frontend (Next.js / npm)
   - package-ecosystem: "npm"
-    directory: "/frontend"
+    directory: "/dxassist-frontend"
     schedule:
       interval: "weekly"
     target-branch: "master"
