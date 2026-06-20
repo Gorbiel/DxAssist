@@ -1,0 +1,76 @@
+version: 2
+
+updates:
+  # Backend (Python / Django)
+  - package-ecosystem: "pip"
+    directory: "/backend"
+    schedule:
+      interval: "weekly"
+    target-branch: "master"
+    open-pull-requests-limit: 5
+    labels:
+      - dependabot
+      - dependencies-update
+      - backend
+    commit-message:
+      prefix: "deps(backend)"
+    groups:
+      django:
+        patterns:
+          - "django*"
+      testing:
+        patterns:
+          - "pytest*"
+          - "coverage*"
+
+  # Frontend (Next.js / npm)
+  - package-ecosystem: "npm"
+    directory: "/frontend"
+    schedule:
+      interval: "weekly"
+    target-branch: "master"
+    open-pull-requests-limit: 5
+    labels:
+      - dependabot
+      - dependencies-update
+      - frontend
+    commit-message:
+      prefix: "deps(frontend)"
+    groups:
+      nextjs:
+        patterns:
+          - "next"
+          - "react"
+          - "react-dom"
+      linting:
+        patterns:
+          - "eslint*"
+          - "@typescript-eslint/*"
+
+  # Docker (Dockerfiles + compose)
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    target-branch: "master"
+    open-pull-requests-limit: 3
+    labels:
+      - dependabot
+      - dependencies-update
+      - infra
+    commit-message:
+      prefix: "deps(docker)"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    target-branch: "master"
+    open-pull-requests-limit: 3
+    labels:
+      - dependabot
+      - dependencies-update
+      - github-actions
+    commit-message:
+      prefix: "deps(github-actions)"

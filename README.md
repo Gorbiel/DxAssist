@@ -36,7 +36,7 @@ The system follows a modular architecture inspired by the *Mixture of Experts* a
 ```text
 /frontend        Frontend application
 /backend         Backend API and business logic
-/infra           Infrastructure and deployment configuration
+/k8s           Infrastructure and deployment configuration
 /ml-modules      Machine learning diagnostic modules
 /docs            Project documentation
 ```

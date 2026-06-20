@@ -8,14 +8,14 @@ This document describes the development workflow, repository conventions, and co
 
 The repository uses two main long-lived branches:
 
-| Branch | Purpose | Merge Strategy |
-|--------|---------|----------------|
-| `master` | Stable branch used for production-ready code and Continuous Deployment | Squash |
-| `dev` | Main development branch used for integrating ongoing work | Squash/Rebase |
+| Branch       | Purpose | Merge Strategy |
+|--------------|---------|----------------|
+| `production` | Stable branch used for production-ready code and Continuous Deployment | Squash |
+| `master`     | Main development branch used for integrating ongoing work | Squash/Rebase |
 
-All new development branches should be created from `dev`.
+All new development branches should be created from `master`.
 
-The `master` branch should only receive changes through Pull Requests from `dev` after the current development state is considered stable.
+The `production` branch should only receive changes through Pull Requests from `dev` after the current development state is considered stable.
 
 ---
 
@@ -24,14 +24,14 @@ The `master` branch should only receive changes through Pull Requests from `dev`
 1. Create or select an existing GitHub Issue.
 2. Assign yourself to the issue.
 3. Create a branch from the issue using GitHub.
-4. Make sure the branch is based on `dev`.
+4. Make sure the branch is based on `master`.
 5. Implement the required changes.
-6. Open a Pull Request into `dev`.
+6. Open a Pull Request into `master`.
 7. Request review from another team member.
-8. Merge into `dev` after review and successful validation.
-9. Merge `dev` into `master` only for stable releases or deployment-ready milestones.
+8. Merge into `master` after review and successful validation.
+9. Merge `master` into `production` only for stable releases or deployment-ready milestones.
 
-Direct commits to `master` and `dev` are prohibited.
+Direct commits to `production` and `master` are prohibited.
 
 ---
 
@@ -55,7 +55,7 @@ docs/31-km2-report
 ml/35-blood-module-training
 ```
 
-All manually created branches should be based on `dev`.
+All manually created branches should be based on `master`.
 
 ## Recommended Branch Types
 
