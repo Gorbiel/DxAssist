@@ -420,3 +420,4 @@ cython_debug/
 #.idea/
 .codex
 .agents
+.agents_extra_context
