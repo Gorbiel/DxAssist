@@ -1,0 +1,154 @@
+[build-system]
+requires = ["setuptools>=80.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dxassist-backend"
+version = "0.1.0"
+description = "Backend service for DxAssist, an on-premise clinical decision-support assistant for doctors."
+readme = { text = "DxAssist backend service for hospital on-premise deployments.", content-type = "text/markdown" }
+requires-python = ">=3.14"
+license = "MIT"
+authors = [
+    { name = "DxAssist Team", email = "dxassist-team@dxassist.local" },
+]
+maintainers = [
+    { name = "DxAssist Team", email = "dxassist-team@dxassist.local" },
+]
+keywords = [
+    "ai",
+    "clinical-decision-support",
+    "django",
+    "healthcare",
+    "medical",
+    "on-premise",
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Framework :: Django",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Healthcare Industry",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+]
+dependencies = [
+    "Django>=6.0,<6.1",
+    "django-cors-headers>=4.9,<5.0",
+    "djangorestframework>=3.17,<4.0",
+    "djangorestframework-simplejwt>=5.5,<6.0",
+    "gunicorn>=23.0,<24.0",
+    "pillow>=12.0,<13.0",
+    "psycopg[binary]>=3.3,<4.0",
+    "whitenoise>=6.9,<7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=25.0,<26.0",
+    "coverage[toml]>=7.8,<8.0",
+    "django-stubs[compatible-mypy]>=5.2,<6.0",
+    "mypy>=1.15,<2.0",
+    "pytest>=8.3,<9.0",
+    "pytest-django>=4.10,<5.0",
+    "ruff>=0.11,<1.0",
+    "python-dotenv",
+]
+
+[project.urls]
+Homepage = "https://github.com/Gorbiel/DxAssist"
+Repository = "https://github.com/Gorbiel/DxAssist"
+Issues = "https://github.com/Gorbiel/DxAssist/issues"
+
+[tool.setuptools]
+package-dir = { "" = "." }
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["apps*", "common*", "config*"]
+
+[tool.black]
+line-length = 88
+target-version = ["py314"]
+extend-exclude = '''
+(
+  /migrations/
+)
+'''
+
+[tool.ruff]
+line-length = 88
+target-version = "py314"
+src = ["."]
+exclude = [
+    ".git",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".venv",
+    "migrations",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I",
+    "UP",
+    "B",
+    "DJ",
+]
+ignore = [
+    "DJ008",
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["apps", "common", "config"]
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"config/settings/*.py" = ["E501", "F403", "F405"]  # Ignore line length and wildcard import errors in settings files
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.dev"
+pythonpath = ["."]
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+testpaths = ["apps"]
+addopts = [
+    "--strict-config",
+    "--strict-markers",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["apps", "common", "config"]
+omit = [
+    "*/migrations/*",
+    "*/tests/*",
+    "manage.py",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+fail_under = 80
+
+[tool.mypy]
+python_version = "3.14"
+plugins = ["mypy_django_plugin.main"]
+strict = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unreachable = true
+exclude = [
+    ".*/migrations/.*",
+]
+
+[tool.django-stubs]
+django_settings_module = "config.settings.dev"
