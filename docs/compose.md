@@ -14,7 +14,13 @@ The backend depends on a healthy PostgreSQL container. The frontend depends on t
 
 ## Required Environment
 
-Create a root `.env` file or export these variables before starting the stack:
+Create a root `.env` file from `.env.example` or export these variables before starting the stack:
+
+```bash
+cp .env.example .env
+```
+
+The most important values are:
 
 ```bash
 POSTGRES_DB=dxassist
@@ -22,6 +28,8 @@ POSTGRES_USER=dxassist
 POSTGRES_PASSWORD=change-me
 SECRET_KEY=change-me
 ```
+
+The committed `.env.example` is safe to share. The local `.env` file is ignored by git and is where machine-specific ports, hostnames, and secrets belong.
 
 `SECRET_KEY` has an insecure local fallback for production-like runs, but should be set explicitly whenever testing deployment behavior.
 

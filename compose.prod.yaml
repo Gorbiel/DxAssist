@@ -4,9 +4,16 @@ services:
     environment:
       ENVIRONMENT: production
       DJANGO_DEBUG: "False"
-      DJANGO_SETTINGS_MODULE: config.settings
+      DJANGO_SETTINGS_MODULE: ${DJANGO_SETTINGS_MODULE:-config.settings}
       SECRET_KEY: ${SECRET_KEY:-django-insecure-compose-production-like-key}
-      ALLOWED_HOSTS: "backend,localhost,127.0.0.1"
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-backend,localhost,127.0.0.1}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:3000,http://127.0.0.1:3000}
+      CSRF_TRUSTED_ORIGINS: ${CSRF_TRUSTED_ORIGINS:-http://localhost:3000,http://127.0.0.1:3000}
+      SERVE_MEDIA_FILES: ${SERVE_MEDIA_FILES:-false}
+      JWT_ACCESS_TOKEN_LIFETIME_MINUTES: ${JWT_ACCESS_TOKEN_LIFETIME_MINUTES:-30}
+      JWT_REFRESH_TOKEN_LIFETIME_DAYS: ${JWT_REFRESH_TOKEN_LIFETIME_DAYS:-30}
+      JWT_ALGORITHM: ${JWT_ALGORITHM:-HS256}
+      MIGRATE_MAX_ATTEMPTS: ${MIGRATE_MAX_ATTEMPTS:-5}
     volumes: !reset []
 
   frontend:
@@ -14,9 +21,9 @@ services:
       context: ./dxassist-frontend
       target: runner
       args:
-        BACKEND_URL: http://backend:8000
+        BACKEND_URL: ${BACKEND_URL:-http://backend:8000}
     command: npm run start
     environment:
       PORT: 3000
-      BACKEND_URL: http://backend:8000
+      BACKEND_URL: ${BACKEND_URL:-http://backend:8000}
     volumes: !reset []
