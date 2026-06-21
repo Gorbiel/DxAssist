@@ -15,15 +15,21 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
-# PostgreSQL database for tests (matches production/dev)
+# PostgreSQL database for tests.
+#
+# Django connects to the server using the compose-compatible credentials below,
+# then creates/uses TEST.NAME as the isolated test database.
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("POSTGRES_DB_TEST", "test_db"),
-        "USER": os.getenv("POSTGRES_USER", "postgres"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD", "password"),
+        "NAME": os.getenv("POSTGRES_DB", "dxassist"),
+        "USER": os.getenv("POSTGRES_USER", "dxassist"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD", "dxassist-local-password"),
         "HOST": os.getenv("POSTGRES_HOST", "localhost"),
         "PORT": os.getenv("POSTGRES_PORT", "5432"),
+        "TEST": {
+            "NAME": os.getenv("POSTGRES_DB_TEST", "dxassist_test"),
+        },
     }
 }
 

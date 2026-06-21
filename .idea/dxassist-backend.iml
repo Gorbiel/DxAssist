@@ -14,13 +14,14 @@
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$/dxassist-backend">
+      <sourceFolder url="file://$MODULE_DIR$/dxassist-backend" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/dxassist-backend/.venv" />
       <excludeFolder url="file://$MODULE_DIR$/dxassist-backend/media" />
       <excludeFolder url="file://$MODULE_DIR$/dxassist-backend/.agents" />
       <excludeFolder url="file://$MODULE_DIR$/dxassist-backend/.codex" />
       <excludeFolder url="file://$MODULE_DIR$/dxassist-backend/dxassist_backend.egg-info" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.14 (inrzynierka-backend)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.14 (inrzynierka) (3)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">

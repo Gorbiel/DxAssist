@@ -116,7 +116,7 @@ section-order = [
 "config/settings/*.py" = ["E501", "F403", "F405"]  # Ignore line length and wildcard import errors in settings files
 
 [tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "config.settings.dev"
+DJANGO_SETTINGS_MODULE = "config.settings.test"
 pythonpath = ["."]
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
 testpaths = ["apps"]
