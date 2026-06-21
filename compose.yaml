@@ -12,6 +12,8 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "${POSTGRES_EXPOSED_PORT:-5432}:5432"
+    networks:
+      - dxassist-network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-dxassist} -d ${POSTGRES_DB:-dxassist}"]
       interval: 5s
@@ -41,6 +43,8 @@ services:
         condition: service_healthy
     ports:
       - "${BACKEND_PORT:-8000}:8000"
+    networks:
+      - dxassist-network
     volumes:
       - ./dxassist-backend:/app
 
@@ -56,10 +60,46 @@ services:
       - backend
     ports:
       - "${FRONTEND_PORT:-3000}:3000"
+    networks:
+      - dxassist-network
     volumes:
       - ./dxassist-frontend:/app
       - frontend_node_modules:/app/node_modules
       - frontend_next:/app/.next
+
+  scheduler:
+    build: ./dxassist-scheduler
+    container_name: dxassist-scheduler
+    ports:
+      - "8001:8001"
+    networks:
+      - dxassist-network
+    depends_on:
+      - angiography
+      - screening
+    restart: unless-stopped
+
+  dxassist-angiography:
+    build: ./models/dxassist-angiography
+    container_name: dxassist-angiography
+    ports:
+      - "8002:8002"
+    networks:
+      - dxassist-network
+    restart: unless-stopped
+
+  dxassist-screening:
+    build: ./models/dxassist-screening
+    container_name: dxassist-screening
+    ports:
+      - "8003:8003"
+    networks:
+      - dxassist-network
+    restart: unless-stopped
+
+networks:
+  dxassist-network:
+    driver: bridge
 
 volumes:
   postgres_data:
