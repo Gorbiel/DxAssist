@@ -20,7 +20,7 @@
       <excludeFolder url="file://$MODULE_DIR$/dxassist-backend/.codex" />
       <excludeFolder url="file://$MODULE_DIR$/dxassist-backend/dxassist_backend.egg-info" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.14 (inrzynierka-backend)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.14 (inrzynierka) (3)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">
