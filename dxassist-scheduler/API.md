@@ -19,8 +19,6 @@ Use this for calling a single ML model.
   "model": "dxassist-angiography",
   "data": {
     "image": "base64_encoded_image_string",
-    "patient_id": "12345",
-    "metadata": {}
   }
 }
 ```
@@ -48,7 +46,6 @@ Use this for multi-model inference with weighted aggregation. The scheduler will
   "model": "dxassist-heartdisease",
   "data": {
     "image": "base64_encoded_angiography_image",
-    "patient_id": "12345"
   }
 }
 ```
@@ -88,8 +85,6 @@ After processing each model (except the last), the scheduler will send:
 {
   "data": {
     "blood_test": "base64_encoded_or_text_data",
-    "cholesterol": 220,
-    "patient_id": "12345"
   }
 }
 ```
