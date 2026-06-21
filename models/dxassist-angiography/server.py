@@ -11,7 +11,7 @@ logger = logging.getLogger('angiography')
 
 class AngiographyModel:
     def __init__(self):
-        self.host = '0.0.0.0'
+        self.host = '127.0.0.1'
         self.port = 8002
         
     def process(self, data: dict) -> dict:
