@@ -18,8 +18,9 @@ class ScreeningModel:
         logger.info("Processing blood data from scheduler")
         
         result = {
-            "atherosclerosis_risk": 72,
-            "inflammation_marker": "elevated"
+            "coronary_disease_probability": 72,
+            "ldl_cholesterol": "elevated",
+            "hs_crp": "elevated"
         }
         
         logger.info(f"Returning result: {result}")
