@@ -3,6 +3,7 @@ Common Django settings for DxAssist.
 Shared across all environments.
 """
 
+import os
 from pathlib import Path
 
 from .jwt import SIMPLE_JWT as SIMPLE_JWT_SETTINGS
@@ -26,6 +27,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt.token_blacklist",
     "apps.authentication",
     "apps.common_commands",
+    "apps.diagnostics",
     "apps.users",
 ]
 
@@ -114,3 +116,7 @@ LOGGING = {
         "level": "INFO",
     },
 }
+
+SCHEDULER_HOST = os.getenv("SCHEDULER_HOST", "scheduler")
+SCHEDULER_PORT = int(os.getenv("SCHEDULER_PORT", "8001"))
+SCHEDULER_TIMEOUT_SECONDS = float(os.getenv("SCHEDULER_TIMEOUT_SECONDS", "15"))
