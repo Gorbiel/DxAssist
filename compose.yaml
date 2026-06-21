@@ -75,8 +75,8 @@ services:
     networks:
       - dxassist-network
     depends_on:
-      - angiography
-      - screening
+      - dxassist-angiography
+      - dxassist-screening
     restart: unless-stopped
 
   dxassist-angiography:
