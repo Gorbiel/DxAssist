@@ -110,6 +110,13 @@ export default function DiagnosticHub() {
         <div className="flex items-center gap-4">
           <span className="text-xs font-bold text-zinc-400">DR. {user.name.toUpperCase()}</span>
           <button onClick={logout} className="text-xs font-black text-red-500 hover:bg-red-50 p-2 rounded-md transition-all">LOGOUT</button>
+            <button 
+            onClick={() => router.push("/developer")} 
+            className="text-xs font-bold text-zinc-400 hover:text-medical-blue transition-colors uppercase tracking-widest"
+            >
+            Dev Panel
+            </button>
+            <div className="h-4 w-[1px] bg-zinc-200" />
         </div>
       </header>
 
