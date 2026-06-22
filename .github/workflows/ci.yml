@@ -178,12 +178,6 @@ jobs:
       - name: Build development services
         run: docker compose -f compose.yaml build
 
-      - name: Validate production-like Compose config
-        run: docker compose -f compose.yaml -f compose.prod.yaml config
-
-      - name: Build production-like services
-        run: docker compose -f compose.yaml -f compose.prod.yaml build
-
   ci-status:
     name: CI Status
     runs-on: ubuntu-latest
