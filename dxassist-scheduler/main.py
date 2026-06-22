@@ -13,7 +13,7 @@ logger = logging.getLogger('scheduler')
 class Scheduler:
     def __init__(self, config_path: str = 'config.yaml'):
         self.config = self.load_config(config_path)
-        self.host = '127.0.0.1'
+        self.host = '0.0.0.0'
         self.port = 8001
         
     def load_config(self, path: str) -> Dict:
