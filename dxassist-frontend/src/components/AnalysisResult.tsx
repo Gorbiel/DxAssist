@@ -1,21 +1,24 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
+import type {
+  AggregatedDiagnosticResult,
+  DiagnosticAnalysisResponse,
+  DiagnosticResult,
+} from "@/lib/diagnosticTypes";
 
 interface AnalysisResultProps {
-  data: any;
+  data: DiagnosticAnalysisResponse;
   onClose: () => void;
 }
 
-export default function AnalysisResult({ data, onClose }: AnalysisResultProps) {
-  const [mounted, setMounted] = useState(false);
-  
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+const isAggregatedResult = (result: DiagnosticResult): result is AggregatedDiagnosticResult => {
+  return "aggregated" in result;
+};
 
+export default function AnalysisResult({ data, onClose }: AnalysisResultProps) {
   const result = data.result;
-  const isAggregated = !!result.aggregated;
+  const isAggregated = isAggregatedResult(result);
   const mainScore = isAggregated 
     ? result.aggregated.coronary_disease_probability 
     : Object.values(result).find(v => typeof v === 'number') || 0;
@@ -29,7 +32,7 @@ export default function AnalysisResult({ data, onClose }: AnalysisResultProps) {
       <div className="h-2 w-full bg-zinc-100 rounded-full overflow-hidden">
         <div 
           className={`h-full ${color} transition-all duration-1000 ease-out rounded-full`}
-          style={{ width: mounted ? `${value}%` : '0%' }}
+          style={{ width: `${value}%` }}
         />
       </div>
     </div>
@@ -70,9 +73,9 @@ export default function AnalysisResult({ data, onClose }: AnalysisResultProps) {
               <h3 className="text-xs font-black text-zinc-900 uppercase tracking-widest border-l-4 border-medical-blue pl-4">Kluczowe Parametry Ryzyka</h3>
               <div className="space-y-6">
                 {isAggregated ? (
-                  Object.entries(result.aggregated).map(([k, v]) => renderRiskBar(k, v as number))
+                  Object.entries(result.aggregated).map(([k, v]) => renderRiskBar(k, v))
                 ) : (
-                  Object.entries(result).map(([k, v]) => typeof v === 'number' && renderRiskBar(k, v as number))
+                  Object.entries(result).map(([k, v]) => typeof v === 'number' && renderRiskBar(k, v))
                 )}
               </div>
             </div>
@@ -82,7 +85,7 @@ export default function AnalysisResult({ data, onClose }: AnalysisResultProps) {
             <div className="space-y-6 pt-6 border-t border-zinc-100">
               <h3 className="text-xs font-black text-zinc-900 uppercase tracking-widest">Szczegóły Fuzji Modułów (Weights)</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {Object.entries(result.details).map(([modName, modRes]: any) => (
+                {Object.entries(result.details).map(([modName, modRes]) => (
                   <div key={modName} className="p-6 bg-zinc-50 rounded-3xl border border-zinc-100 group hover:border-medical-blue/30 transition-all">
                     <p className="text-[10px] font-black text-zinc-400 uppercase mb-4 truncate">{modName}</p>
                     <div className="space-y-4">

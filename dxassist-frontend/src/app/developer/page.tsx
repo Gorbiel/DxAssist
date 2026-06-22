@@ -2,9 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 import api from "@/lib/api";
 import { useAuth } from "@/context/AuthContext";
-import MedicalInput from "@/components/ui/MedicalInput";
+
+interface ApiErrorResponse {
+  detail?: string;
+}
 
 export default function DeveloperPage() {
   const { user, loading } = useAuth();
@@ -51,8 +55,10 @@ export default function DeveloperPage() {
         input_schema: '{\n  "image": "Angiography image in Base64"\n}',
         base_url: "http://module-service:8000"
       });
-    } catch (err: any) {
-      const errorMsg = err.response?.data?.detail || "Błąd walidacji manifestu. Sprawdź format JSON.";
+    } catch (err: unknown) {
+      const errorMsg = axios.isAxiosError<ApiErrorResponse>(err)
+        ? err.response?.data?.detail || "Błąd walidacji manifestu. Sprawdź format JSON."
+        : "Błąd walidacji manifestu. Sprawdź format JSON.";
       setStatus({ type: "error", msg: errorMsg });
     } finally {
       setIsSubmitting(false);

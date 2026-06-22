@@ -2,22 +2,32 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 import api from "@/lib/api";
 import { useAuth } from "@/context/AuthContext";
 import { fileToBase64 } from "@/lib/utils";
 import AnalysisResult from "@/components/AnalysisResult";
+import type {
+  AdditionalData,
+  DiagnosticAnalysisResponse,
+  DiagnosticModel,
+} from "@/lib/diagnosticTypes";
+
+interface ApiErrorResponse {
+  detail?: string;
+}
 
 export default function DiagnosticHub() {
   const { user, logout, loading } = useAuth();
   const router = useRouter();
 
-  const [models, setModels] = useState<any[]>([]);
+  const [models, setModels] = useState<DiagnosticModel[]>([]);
   const [selectedModelId, setSelectedModelId] = useState("");
   const [inputData, setInputData] = useState<Record<string, string>>({});
-  const [additionalData, setAdditionalData] = useState<Record<string, any>>({});
+  const [additionalData, setAdditionalData] = useState<AdditionalData>({});
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [analysisResult, setAnalysisResult] = useState<any | null>(null);
+  const [analysisResult, setAnalysisResult] = useState<DiagnosticAnalysisResponse | null>(null);
 
   // 1. Sprawdzenie autoryzacji
   useEffect(() => {
@@ -38,8 +48,9 @@ export default function DiagnosticHub() {
         if (res.data.models?.length > 0) {
             setSelectedModelId(res.data.models[0].id);
         }
-      } catch (err: any) {
-        console.error("DEBUG: BŁĄD POBIERANIA MODELI:", err.response?.data || err.message);
+      } catch (err: unknown) {
+        const errorDetails = axios.isAxiosError(err) ? err.response?.data || err.message : err;
+        console.error("DEBUG: BŁĄD POBIERANIA MODELI:", errorDetails);
         setError("Błąd połączenia. Sprawdź konsolę (F12).");
       }
     };
@@ -87,9 +98,14 @@ export default function DiagnosticHub() {
       const res = await api.post("/diagnostics/analyze/", payload);
       console.log("DEBUG: ODPOWIEDŹ ZE SCHEDULERA:", res.data);
       setAnalysisResult(res.data);
-    } catch (err: any) {
-      console.error("DEBUG: BŁĄD ANALIZY:", err.response?.data || err.message);
-      setError(err.response?.data?.detail || "Błąd Schedulera.");
+    } catch (err: unknown) {
+      const errorDetails = axios.isAxiosError<ApiErrorResponse>(err) ? err.response?.data || err.message : err;
+      console.error("DEBUG: BŁĄD ANALIZY:", errorDetails);
+      setError(
+        axios.isAxiosError<ApiErrorResponse>(err)
+          ? err.response?.data?.detail || "Błąd Schedulera."
+          : "Błąd Schedulera."
+      );
     } finally {
       setIsAnalyzing(false);
     }
@@ -165,7 +181,7 @@ export default function DiagnosticHub() {
               <div className="flex-1 space-y-10">
                 {/* DYNAMICZNE INPUTY GŁÓWNE */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {currentModel?.input_schema && Object.entries(currentModel.input_schema).map(([key, desc]: any) => (
+                  {currentModel?.input_schema && Object.entries(currentModel.input_schema).map(([key, desc]) => (
                     <div key={key} className="space-y-2 text-center">
                       <label className="text-[10px] font-black text-zinc-400 uppercase">{key}</label>
                       <div className="relative border-2 border-dashed border-zinc-200 rounded-3xl p-8 hover:bg-zinc-50 transition-all cursor-pointer">
@@ -187,8 +203,8 @@ export default function DiagnosticHub() {
                     <div className="pt-8 border-t border-zinc-100">
                         <p className="text-[10px] font-black text-medical-blue uppercase text-center mb-6 tracking-widest">Wymagane dane wspierające (Multi-Model Fusion)</p>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {Object.entries(currentModel.additional_data_schema).map(([modelKey, schema]: any) => (
-                                Object.entries(schema).map(([key, desc]: any) => (
+                            {Object.entries(currentModel.additional_data_schema).map(([modelKey, schema]) => (
+                                Object.entries(schema).map(([key, desc]) => (
                                     <div key={`${modelKey}-${key}`} className="space-y-2 text-center">
                                         <label className="text-[10px] font-black text-zinc-400 uppercase">{modelKey} / {key}</label>
                                         <div className="relative border-2 border-dashed border-medical-blue/20 rounded-3xl p-8 hover:bg-medical-blue/5 transition-all cursor-pointer">

@@ -1,9 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 import api from "@/lib/api";
 import { useAuth } from "@/context/AuthContext";
 import MedicalInput from "@/components/ui/MedicalInput";
+
+interface LoginErrorResponse {
+  non_field_errors?: string[];
+}
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -22,8 +27,12 @@ export default function LoginPage() {
       const { access, refresh, user } = res.data;
       login(access, refresh, user);
       router.push("/");
-    } catch (err: any) {
-      setError(err.response?.data?.non_field_errors?.[0] || "Błąd autoryzacji.");
+    } catch (err: unknown) {
+      setError(
+        axios.isAxiosError<LoginErrorResponse>(err)
+          ? err.response?.data?.non_field_errors?.[0] || "Błąd autoryzacji."
+          : "Błąd autoryzacji."
+      );
     } finally {
       setIsLoading(false);
     }
